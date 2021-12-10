@@ -422,9 +422,6 @@ class Page():
             tag_href = tag['href']
             tag_text = tag.text.lower().strip()
 
-            if len(tag.get('title', '')) == 0:
-                self.warn('Anchor missing title tag: {0}'.format(tag_href))
-
             if tag_text in ['click here', 'page', 'article']:
                 self.warn('Anchor text contains generic text: {0}'.format(tag_text))
 
