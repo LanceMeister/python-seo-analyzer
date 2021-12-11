@@ -9,7 +9,7 @@ import lxml.html as lh
 from string import punctuation
 from urllib.parse import urlsplit
 from urllib3.exceptions import HTTPError
-from seoanalyzer.stopwords import stopwords_en
+from seoanalyzer.stopwords import stopwords_en, stopwords_de
 from seoanalyzer.http import http
 from seoanalyzer.stemmer import stem
 
@@ -17,7 +17,7 @@ from seoanalyzer.stemmer import stem
 # Retrieval Group". The original list can be found at
 # http://ir.dcs.gla.ac.uk/resources/linguistic_utils/stop_words
 ENGLISH_STOP_WORDS = stopwords_en.ENGLISH_STOP_WORDS
-
+GERMAN_STOP_WORDS = stopwords_de.GERMAN_STOP_WORDS
 TOKEN_REGEX = re.compile(r'(?u)\b\w\w+\b')
 
 HEADING_TAGS_XPATHS = {
@@ -234,7 +234,8 @@ class Page():
         return TOKEN_REGEX.findall(rawtext.lower())
 
     def tokenize(self, rawtext):
-        return [word for word in TOKEN_REGEX.findall(rawtext.lower()) if word not in ENGLISH_STOP_WORDS]
+        return [word for word in TOKEN_REGEX.findall(rawtext.lower()) if word not in ENGLISH_STOP_WORDS or
+                GERMAN_STOP_WORDS]
 
     def getngrams(self, D, n=2):
         return zip(*[D[i:] for i in range(n)])
