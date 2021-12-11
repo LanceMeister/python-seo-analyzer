@@ -234,7 +234,7 @@ class Page():
         return TOKEN_REGEX.findall(rawtext.lower())
 
     def tokenize(self, rawtext):
-        return [word for word in TOKEN_REGEX.findall(rawtext.lower()) if word not in ENGLISH_STOP_WORDS or
+        return [word for word in TOKEN_REGEX.findall(rawtext.lower()) if word not in ENGLISH_STOP_WORDS and
                 GERMAN_STOP_WORDS]
 
     def getngrams(self, D, n=2):
