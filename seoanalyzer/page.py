@@ -9,7 +9,7 @@ import lxml.html as lh
 from string import punctuation
 from urllib.parse import urlsplit
 from urllib3.exceptions import HTTPError
-from stopwords import stopwords_en
+from seoanalyzer.stopwords import stopwords_en
 from seoanalyzer.http import http
 from seoanalyzer.stemmer import stem
 
