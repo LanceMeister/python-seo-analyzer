@@ -15,7 +15,7 @@ from seoanalyzer.stemmer import stem
 # This list of English stop words is taken from the "Glasgow Information
 # Retrieval Group". The original list can be found at
 # http://ir.dcs.gla.ac.uk/resources/linguistic_utils/stop_words
-ENGLISH_STOP_WORDS = frozenset([
+STOP_WORDS = frozenset([
     "a", "about", "above", "across", "after", "afterwards", "again", "against",
     "all", "almost", "alone", "along", "already", "also", "although", "always",
     "am", "among", "amongst", "amoungst", "amount", "an", "and", "another",
@@ -56,9 +56,7 @@ ENGLISH_STOP_WORDS = frozenset([
     "wherein", "whereupon", "wherever", "whether", "which", "while", "whither",
     "who", "whoever", "whole", "whom", "whose", "why", "will", "with",
     "within", "without", "would", "yet", "you", "your", "yours", "yourself",
-    "yourselves"])
-
-GERMAN_STOP_WORDS = frozenset([
+    "yourselves",
     'ab',
     'aber',
     'abermaliges',
@@ -2130,8 +2128,7 @@ class Page():
         return TOKEN_REGEX.findall(rawtext.lower())
 
     def tokenize(self, rawtext):
-        return [word for word in TOKEN_REGEX.findall(rawtext.lower()) if word not in ENGLISH_STOP_WORDS or
-                GERMAN_STOP_WORDS]
+        return [word for word in TOKEN_REGEX.findall(rawtext.lower()) if word not in STOP_WORDS]
 
     def getngrams(self, D, n=2):
         return zip(*[D[i:] for i in range(n)])
