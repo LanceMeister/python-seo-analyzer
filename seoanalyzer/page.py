@@ -1975,7 +1975,7 @@ class Page():
         """
 
         context = {
-            'url': self.url,
+            'page': self.url,
             'title': self.title,
             'description': self.description,
             'word_count': self.total_word_count,
